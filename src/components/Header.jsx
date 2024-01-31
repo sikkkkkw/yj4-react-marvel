@@ -41,17 +41,34 @@ export default function Header() {
           </div>
         </div>
       </section>
-      <section className="w-full border border-gray-700 flex justify-center h-10 bg-main-dark text-white uppercase space-x-8 text-sm items-center">
-        <p>news</p>
-        <p>comics</p>
-        <Link to="/characters">
+      <section className="w-full border border-gray-700 flex justify-center h-10 bg-main-dark text-white uppercase space-x-8 text-sm items-center ">
+        <p className="hover:border-b border-red-500 h-full flex items-center">
+          news
+        </p>
+        <p className="hover:border-b border-red-500 h-full flex items-center">
+          comics
+        </p>
+        <Link
+          to="/characters"
+          className="hover:border-b border-red-500 h-full flex items-center"
+        >
           <p>characters</p>
         </Link>
-        <p>movies</p>
-        <p>tv shows</p>
-        <p>games</p>
-        <p>videos</p>
-        <p>more</p>
+        <p className="hover:border-b border-red-500 h-full flex items-center">
+          movies
+        </p>
+        <p className="hover:border-b border-red-500 h-full flex items-center">
+          tv shows
+        </p>
+        <p className="hover:border-b border-red-500 h-full flex items-center">
+          games
+        </p>
+        <p className="hover:border-b border-red-500 h-full flex items-center">
+          videos
+        </p>
+        <p className="hover:border-b border-red-500 h-full flex items-center">
+          more
+        </p>
       </section>
     </>
   );
