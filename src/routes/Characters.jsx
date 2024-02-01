@@ -3,6 +3,7 @@ import TitleRotate from "../components/TitleRotate";
 import { apiGetCharacters } from "../api";
 import { useQuery } from "react-query";
 import { ScaleLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 export default function Characters() {
   let characters;
@@ -17,7 +18,7 @@ export default function Characters() {
   return (
     <Layout>
       {/* 캐릭터 서브페이지 이미지타이틀 */}
-      <section className="relative w-full h-[400px]">
+      <section className="relative w-full h-[500px]">
         <img
           className="h-full w-full object-cover"
           src="https://cdn.mos.cms.futurecdn.net/rZUHqzbf6DGLby64JFWVVo.jpg"
@@ -46,33 +47,35 @@ export default function Characters() {
             <div className="grid grid-cols-6 gap-4">
               {characters?.map((item, index) => (
                 <div key={index} className="h-[340px]  group cursor-pointer ">
-                  <div
-                    style={{
-                      clipPath:
-                        "polygon(100% 0, 100% 87%, 82% 100%, 0 100%, 0 0)",
-                    }}
-                    className="w-full h-full flex flex-col bg-red-500"
-                  >
-                    {/* 이미지 */}
-                    <div className="w-full h-[60%] overflow-hidden">
-                      <img
-                        className="w-full h-full  object-cover duration-300 group-hover:scale-110"
-                        src={`${item.thumbnail?.path}.${item.thumbnail.extension}`}
-                        alt="character_image"
-                      />
-                    </div>
-                    {/* 타이틀 */}
-                    <div className=" relative w-full h-[40%] flex items-end ">
-                      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between p-2 text-white">
-                        <h2 className="font-semibold">{item?.name}</h2>
-                        <p className="text-sm text-gray-300">
-                          {item?.description?.substr(0, 10)}
-                        </p>
+                  <Link to={`/characters/${item.id}`}>
+                    <div
+                      style={{
+                        clipPath:
+                          "polygon(100% 0, 100% 87%, 82% 100%, 0 100%, 0 0)",
+                      }}
+                      className="w-full h-full flex flex-col bg-red-500"
+                    >
+                      {/* 이미지 */}
+                      <div className="w-full h-[60%] overflow-hidden">
+                        <img
+                          className="w-full h-full  object-cover duration-300 group-hover:scale-110"
+                          src={`${item.thumbnail?.path}.${item.thumbnail.extension}`}
+                          alt="character_image"
+                        />
                       </div>
-                      {/* 호버시 아래위로 작동하는 부분 */}
-                      <div className="w-full h-[95%] bg-main-dark group-hover:h-0"></div>
+                      {/* 타이틀 */}
+                      <div className=" relative w-full h-[40%] flex items-end ">
+                        <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between p-2 text-white">
+                          <h2 className="font-semibold">{item?.name}</h2>
+                          <p className="text-sm text-gray-300">
+                            {item?.description?.substr(0, 10)}
+                          </p>
+                        </div>
+                        {/* 호버시 아래위로 작동하는 부분 */}
+                        <div className="w-full h-[95%] bg-main-dark group-hover:h-0"></div>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
