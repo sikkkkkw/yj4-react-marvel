@@ -1,12 +1,60 @@
 import { FaSearch } from "react-icons/fa";
 import LogoLarge from "../assets/png/logo-large.png";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import NavLink from "./NavLink";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import ComicsComponent from "../Menus/ComicsComponent";
+const MENUS = [
+  {
+    text: "news",
+    href: "#",
+    component: "",
+  },
+  {
+    text: "comics",
+    href: "/comics",
+    component: ComicsComponent,
+  },
+  {
+    text: "characters",
+    href: "/characters",
+    component: "",
+  },
+  {
+    text: "movies",
+    href: "/movies",
+    component: "",
+  },
+  {
+    text: "Tv show",
+    href: "/tv",
+    component: "",
+  },
+  {
+    text: "games",
+    href: "/games",
+    component: "",
+  },
+  {
+    text: "videos",
+    href: "/videos",
+    component: "",
+  },
+  {
+    text: "more",
+    href: "/more",
+    component: "",
+  },
+];
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  console.log(menuOpen);
   return (
     <>
       {/* 헤더 */}
-      <section className="w-full flex justify-center h-12 bg-main-dark">
+      <section className=" w-full flex justify-center h-12 bg-main-dark">
         <div className="relative max-w-7xl w-full h-full flex text-white justify-between items-center">
           {/* 왼쪽: 회원정보 */}
           <div className="flex h-full items-center text-sm space-x-2 border-l border-r border-gray-700 px-4">
@@ -41,35 +89,32 @@ export default function Header() {
           </div>
         </div>
       </section>
-      <section className="w-full border border-gray-700 flex justify-center h-10 bg-main-dark text-white uppercase space-x-8 text-sm items-center ">
-        <p className="hover:border-b border-red-500 h-full flex items-center">
-          news
-        </p>
-        <p className="hover:border-b border-red-500 h-full flex items-center">
-          comics
-        </p>
-        <Link
-          to="/characters"
-          className="hover:border-b border-red-500 h-full flex items-center"
-        >
-          <p>characters</p>
-        </Link>
-        <p className="hover:border-b border-red-500 h-full flex items-center">
-          movies
-        </p>
-        <p className="hover:border-b border-red-500 h-full flex items-center">
-          tv shows
-        </p>
-        <p className="hover:border-b border-red-500 h-full flex items-center">
-          games
-        </p>
-        <p className="hover:border-b border-red-500 h-full flex items-center">
-          videos
-        </p>
-        <p className="hover:border-b border-red-500 h-full flex items-center">
-          more
-        </p>
-      </section>
+      <div className="relative">
+        <section className=" w-full border border-gray-700 flex justify-center h-10 bg-main-dark text-white uppercase space-x-8 text-sm items-center ">
+          {MENUS.map((item, index) => (
+            <NavLink
+              menuOpen={menuOpen}
+              setMenuOpen={setMenuOpen}
+              key={index}
+              href={item.href}
+              component={item.component}
+            >
+              {item.text}
+            </NavLink>
+          ))}
+        </section>
+        {menuOpen && (
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className=" absolute z-30 top-10 left-0 right-0 w-full h-80 bg-white"
+            ></motion.div>
+          </AnimatePresence>
+        )}
+      </div>
     </>
   );
 }
