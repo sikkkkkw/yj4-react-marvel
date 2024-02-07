@@ -14,13 +14,18 @@ export async function apiGetComics() {
 }
 
 // [GET] Events 리스트
-export async function apiGetEvents() {
-  return await fetch(`${BASE_URL}/events?limit=10&apikey=${API_KEY}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((res) => res.json());
+export async function apiGetEvents({ pageParam = 0 }) {
+  console.log(pageParam);
+  const offset = pageParam * 10;
+  return await fetch(
+    `${BASE_URL}/events?limit=20&offset=${offset}&apikey=${API_KEY}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  ).then((res) => res.json());
 }
 
 // [GET] Characters 리스트
