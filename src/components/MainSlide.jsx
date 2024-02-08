@@ -138,7 +138,7 @@ export default function MainSlide() {
       </div>
       {/* 버튼영역 */}
       <div className="w-full h-20 flex justify-center">
-        <div className="max-w-7xl h-full w-full grid grid-cols-4">
+        <div className="md:max-w-7xl h-full w-full grid grid-cols-4">
           {/* 1: 75% grid-cols-3 */}
           <div className="col-span-3 -translate-y-12 bg-white z-10">
             <SelectedBtns
